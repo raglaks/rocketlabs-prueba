@@ -3,7 +3,8 @@ const inst1 = new Vue({
     el: "#app",
     data: {
 
-        query: ""
+        query: "",
+        emptyErr: false
 
     },
     methods: {
@@ -14,7 +15,7 @@ const inst1 = new Vue({
         
                 res.json().then(data=>{
         
-                    console.log(data);
+                    console.log(data.items);
         
                 });
         
@@ -31,6 +32,18 @@ const inst1 = new Vue({
             e.preventDefault();
 
             console.log(this.query);
+
+            if (this.query === "") {
+
+                this.emptyErr = true;
+
+            } else {
+
+                this.emptyErr = false;
+
+                this.callAPI(this.query);
+
+            }
 
         }
 

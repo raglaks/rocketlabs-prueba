@@ -4,7 +4,8 @@ const inst1 = new Vue({
     data: {
 
         query: "",
-        emptyErr: false
+        emptyErr: false,
+        usersData: []
 
     },
     methods: {
@@ -14,8 +15,10 @@ const inst1 = new Vue({
             fetch(`https://api.github.com/search/users?q=${query}`).then(res => {
         
                 res.json().then(data=>{
-        
-                    console.log(data.items);
+
+                    this.usersData = data.items;
+
+                    console.log(this.usersData);
         
                 });
         

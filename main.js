@@ -9,7 +9,7 @@ const inst1 = new Vue({
         emptyErr: false,
         usersData: [],
         cleanArr: [],
-        // lessThan10: [],
+        lessThan10: [],
         // notFound: false
 
     },
@@ -39,13 +39,17 @@ const inst1 = new Vue({
 
         callAPILess10 (query) {
 
-            fetch(`https://api.github.com/search/users?q=${query}+followers:10&sort=page=1&per_page=10`).then(res => {
+            console.log(query);
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:<10&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 
-                    this.usersData = data.items;
+                    this.lessThan10 = data.items;
 
-                    this.buildCards(this.usersData);
+                    console.log(data.items);
+
+                    //this.buildCards(this.usersData);
         
                 });
         
@@ -57,31 +61,9 @@ const inst1 = new Vue({
 
         },
 
-        submitClick (e) {
-
-            e.preventDefault();
-
-            this.usersData = [];
-
-            this.cleanArr = [];
-
-            console.log(this.query);
-
-            if (this.query === "") {
-
-                this.emptyErr = true;
-
-            } else {
-
-                this.emptyErr = false;
-
-                this.callAPI(this.query);
-
-            }
-
-        },
-
         buildCards (arr) {
+
+            console.log(this.usersData);
 
             this.notFound = false;
 
@@ -120,6 +102,28 @@ const inst1 = new Vue({
 
         },
 
+        submitClick (e) {
+
+            e.preventDefault();
+
+            this.usersData = [];
+
+            this.cleanArr = [];
+
+            if (this.query === "") {
+
+                this.emptyErr = true;
+
+            } else {
+
+                this.emptyErr = false;
+
+                this.callAPI(this.query);
+
+            }
+
+        },
+
         lessThan10Button(e) {
 
             e.preventDefault();
@@ -135,6 +139,8 @@ const inst1 = new Vue({
             } else {
 
                 this.emptyErr = false;
+
+                console.log(this.query);
 
                 this.callAPILess10(this.query);
 

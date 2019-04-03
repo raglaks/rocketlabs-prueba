@@ -4,16 +4,16 @@ let GitHub = require("gh.js");
 const inst1 = new Vue({
 
     el: "#app",
+
     data: {
 
         query: "",
         emptyErr: false,
         usersData: [],
-        cleanArr: [],
-        //lessThan10: [],
-        // notFound: false
+        cleanArr: []
 
     },
+
     methods: {
 
         callAPI (query) {
@@ -173,19 +173,13 @@ const inst1 = new Vue({
 
             if (e.target.id == 1) {
 
-                console.log(1);
-
                 this.callAPILess10(this.query);
 
             } else if (e.target.id == 2) {
 
-                console.log(2);
-
                 this.callAPI10To100(this.query);
 
             } else {
-
-                console.log(3);
 
                 this.callAPIOver100(this.query);
 
@@ -193,7 +187,7 @@ const inst1 = new Vue({
 
         }
 
-    },
+    }
 
 });
 

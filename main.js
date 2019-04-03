@@ -5,7 +5,8 @@ const inst1 = new Vue({
 
         query: "",
         emptyErr: false,
-        usersData: []
+        usersData: [],
+        cleanArr: []
 
     },
     methods: {
@@ -18,7 +19,9 @@ const inst1 = new Vue({
 
                     this.usersData = data.items;
 
-                    console.log(this.usersData);
+                    // console.log(this.usersData);
+
+                    this.buildCards(this.usersData);
         
                 });
         
@@ -47,6 +50,30 @@ const inst1 = new Vue({
                 this.callAPI(this.query);
 
             }
+
+        },
+
+        buildCards (arr) {
+
+            const userObj = {};
+
+            arr.map(el => {
+
+                const avatar = el.avatar_url;
+                const followers = el.followers_url;
+                const following = el.following_url;
+                const repos = el.repos_url;
+
+                userObj.avatar = avatar;
+                userObj.followers = followers;
+                userObj.following = following;
+                userObj.repos = repos;
+
+                this.cleanArr.push(userObj);
+
+            });
+
+            console.log(this.cleanArr);
 
         }
 

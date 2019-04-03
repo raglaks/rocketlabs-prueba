@@ -7,8 +7,8 @@ const inst1 = new Vue({
         emptyErr: false,
         usersData: [],
         cleanArr: [],
-        lessThan10: [],
-        notFound: false
+        // lessThan10: [],
+        // notFound: false
 
     },
     methods: {
@@ -33,13 +33,33 @@ const inst1 = new Vue({
 
         },
 
+        callAPILess10 (query) {
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:10&sort=page=1&per_page=10`).then(res => {
+        
+                res.json().then(data=>{
+
+                    this.usersData = data.items;
+
+                    this.buildCards(this.usersData);
+        
+                });
+        
+            }).catch(err=>{
+        
+                throw err;
+        
+            });
+
+        },
+
         submitClick (e) {
+
+            e.preventDefault();
 
             this.usersData = [];
 
             this.cleanArr = [];
-
-            e.preventDefault();
 
             console.log(this.query);
 
@@ -63,21 +83,58 @@ const inst1 = new Vue({
 
             console.log(arr);
 
+            fetch(url).then(res=>{
+
+                res.json().then(data=>{
+
+                    console.log(data);
+
+                });
+
+            });
+
             arr.map((el, key) => {
 
                 let userObj = {};
 
                 let id = key;
                 let avatar = el.avatar_url.replace(/"/, '');
-                let followers = el.followers_url.length;
-                let following = el.following_url.length;
-                let repos = el.repos_url.length;
+                let followers = el.followers_url;
+                let following = el.following_url;
+                let repos = el.repos_url;
+
+                fetch(followers).then(res => {
+
+                    res.json().then(data=>{
+
+                        userObj.followers = data.length;
+
+                    });
+
+                });
+
+                fetch(following).then(res => {
+
+                    res.json().then(data=>{
+
+                        userObj.following = data.length;
+
+                    });
+
+                });
+
+                fetch(following).then(res => {
+
+                    res.json().then(data=>{
+
+                        userObj.repos = data.length;
+
+                    });
+
+                });
 
                 userObj.id = id;
                 userObj.avatar = avatar;
-                userObj.followers = followers;
-                userObj.following = following;
-                userObj.repos = repos;
 
                 this.cleanArr.push(userObj);
 
@@ -91,39 +148,21 @@ const inst1 = new Vue({
 
             e.preventDefault();
 
-            this.cleanArr.map((el, key)=>{
+            this.usersData = [];
 
-                if (el.followers < 10) {
+            this.cleanArr = [];
 
-                    let userObj = {};
+            if (this.query === "") {
 
-                    let id = key;
-                    let avatar = el.avatar_url.replace(/"/, '');
-                    let followers = el.followers_url.length;
-                    let following = el.following_url.length;
-                    let repos = el.repos_url.length;
+                this.emptyErr = true;
 
-                    userObj.id = id;
-                    userObj.avatar = avatar;
-                    userObj.followers = followers;
-                    userObj.following = following;
-                    userObj.repos = repos;
+            } else {
 
-                    this.lessThan10.push(userObj);
+                this.emptyErr = false;
 
-                } else {
+                this.callAPILess10(this.query);
 
-                    this.notFound = true;
-
-                    this.lessThan10 = [];
-
-                    this.cleanArr = [];
-
-                }
-
-            });
-
-            console.log(this.lessThan10, this.notFound);
+            }
 
         }
 

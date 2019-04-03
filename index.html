@@ -23,11 +23,11 @@
 
         <br>
 
-        <div v-show="cleanArr.length > 0 && lessThan10.length === 0">
+        <div v-show="cleanArr.length > 0">
 
             <div>
 
-                <p>Show users with: </p>
+                <p>Show users named {{query}} with: </p>
 
                 <button v-on:click="lessThan10Button">Less than 10 followers</button>
 
@@ -50,7 +50,7 @@
 
         </div>
 
-        <div v-show="lessThan10.length > 0">
+        <!-- <div v-show="lessThan10.length > 0">
 
             <div v-for="user in lessThan10">
 
@@ -93,7 +93,7 @@
 
             <p>No users found</p>
 
-        </div>
+        </div> -->
 
     </div>
     

@@ -64,9 +64,9 @@ const inst1 = new Vue({
                 let userObj = {};
 
                 let avatar = el.avatar_url.replace(/"/, '');
-                let followers = el.followers_url;
-                let following = el.following_url;
-                let repos = el.repos_url;
+                let followers = el.followers_url.length;
+                let following = el.following_url.length;
+                let repos = el.repos_url.length;
 
                 userObj.avatar = avatar;
                 userObj.followers = followers;

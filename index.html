@@ -25,12 +25,26 @@
 
         <div v-show="cleanArr.length > 0">
 
+            <div>
+
+                <p>Show users with: </p>
+
+                <button>Less than 10 followers</button>
+
+                <button>Between 10 and 100 followers</button>
+
+                <button>More than 100 followers</button>
+
+            </div>
+
+            <hr>
+
             <div v-for="user in cleanArr">
 
                 <img v-bind:src="user.avatar" alt="">
-                <p>Following: {{user.following.length}}</p>
-                <p>Followers: {{user.followers.length}}</p>
-                <p>Repos: {{user.repos.length}}</p>
+                <p>Following: {{user.following}}</p>
+                <p>Followers: {{user.followers}}</p>
+                <p>Repos: {{user.repos}}</p>
             
             </div>
 

@@ -1,0 +1,22 @@
+{
+  "name": "rocketlabs-prueba",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raglaks/rocketlabs-prueba.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raglaks/rocketlabs-prueba/issues"
+  },
+  "homepage": "https://github.com/raglaks/rocketlabs-prueba#readme",
+  "dependencies": {
+    "gh.js": "^3.0.13"
+  }
+}

@@ -83,16 +83,6 @@ const inst1 = new Vue({
 
             console.log(arr);
 
-            fetch(url).then(res=>{
-
-                res.json().then(data=>{
-
-                    console.log(data);
-
-                });
-
-            });
-
             arr.map((el, key) => {
 
                 let userObj = {};
@@ -103,35 +93,37 @@ const inst1 = new Vue({
                 let following = el.following_url;
                 let repos = el.repos_url;
 
-                fetch(followers).then(res => {
+                console.log(following);
 
-                    res.json().then(data=>{
+                // fetch(followers).then(res => {
 
-                        userObj.followers = data.length;
+                //     res.json().then(data=>{
 
-                    });
+                //         userObj.followers = data.length;
 
-                });
+                //     });
 
-                fetch(following).then(res => {
+                // });
 
-                    res.json().then(data=>{
+                // fetch(following).then(res => {
 
-                        userObj.following = data.length;
+                //     res.json().then(data=>{
 
-                    });
+                //         userObj.following = data.length;
 
-                });
+                //     });
 
-                fetch(following).then(res => {
+                // });
 
-                    res.json().then(data=>{
+                // fetch(repos).then(res => {
 
-                        userObj.repos = data.length;
+                //     res.json().then(data=>{
 
-                    });
+                //         userObj.repos = data.length;
 
-                });
+                //     });
+
+                // });
 
                 userObj.id = id;
                 userObj.avatar = avatar;

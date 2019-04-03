@@ -1,3 +1,5 @@
+//const GitHub = require("gh.js");
+
 const inst1 = new Vue({
 
     el: "#app",
@@ -22,6 +24,8 @@ const inst1 = new Vue({
                     this.usersData = data.items;
 
                     this.buildCards(this.usersData);
+
+                    //console.log(this.usersData);
         
                 });
         
@@ -89,44 +93,14 @@ const inst1 = new Vue({
 
                 let id = key;
                 let avatar = el.avatar_url.replace(/"/, '');
+                let login = el.login;
                 let followers = el.followers_url;
                 let following = el.following_url;
                 let repos = el.repos_url;
 
-                console.log(following);
-
-                // fetch(followers).then(res => {
-
-                //     res.json().then(data=>{
-
-                //         userObj.followers = data.length;
-
-                //     });
-
-                // });
-
-                // fetch(following).then(res => {
-
-                //     res.json().then(data=>{
-
-                //         userObj.following = data.length;
-
-                //     });
-
-                // });
-
-                // fetch(repos).then(res => {
-
-                //     res.json().then(data=>{
-
-                //         userObj.repos = data.length;
-
-                //     });
-
-                // });
-
                 userObj.id = id;
                 userObj.avatar = avatar;
+                userObj.login = login;
 
                 this.cleanArr.push(userObj);
 

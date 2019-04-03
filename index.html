@@ -42,6 +42,7 @@
             <div v-for="user in cleanArr">
 
                 <img v-bind:src="user.avatar" alt="user.key">
+                <p><strong>{{user.login}}</strong></p>
                 <p>Following: {{user.following}}</p>
                 <p>Followers: {{user.followers}}</p>
                 <p>Repos: {{user.repos}}</p>

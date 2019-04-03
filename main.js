@@ -15,7 +15,7 @@ const inst1 = new Vue({
 
         callAPI (query) {
 
-            fetch(`https://api.github.com/search/users?q=${query}`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 

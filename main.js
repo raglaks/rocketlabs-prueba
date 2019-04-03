@@ -55,14 +55,16 @@ const inst1 = new Vue({
 
         buildCards (arr) {
 
-            const userObj = {};
+            // console.log(arr);
 
             arr.map(el => {
 
-                const avatar = el.avatar_url;
-                const followers = el.followers_url;
-                const following = el.following_url;
-                const repos = el.repos_url;
+                let userObj = {};
+
+                let avatar = el.avatar_url.replace(/"/, '');
+                let followers = el.followers_url;
+                let following = el.following_url;
+                let repos = el.repos_url;
 
                 userObj.avatar = avatar;
                 userObj.followers = followers;
@@ -82,18 +84,3 @@ const inst1 = new Vue({
 });
 
 
-// fetch(`https://api.kanye.rest`).then(res=>{
-
-//             res.json().then(data=>{
-                
-//                 this.setState({quote: data.quote});
-            
-//                 this.speaKanye(this.state.quote);
-
-//             });
-
-//         }).catch(err=>{
-
-//             throw err;
-
-//         });

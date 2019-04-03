@@ -19,6 +19,21 @@
 
         <p v-show="emptyErr">Please input a name; field can't be blank.</p>
 
+        <br>
+
+        <div v-show="cleanArr.length > 0">
+
+            <div v-for="user in cleanArr">
+
+                <img v-bind:src="user.avatar" alt="">
+                <p>Following: {{user.following.length}}</p>
+                <p>Followers: {{user.followers.length}}</p>
+                <p>Repos: {{user.repos.length}}</p>
+            
+            </div>
+
+        </div>
+
     </div>
     
 </body>

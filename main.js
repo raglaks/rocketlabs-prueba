@@ -6,7 +6,13 @@ const inst1 = new Vue({
         query: "",
         emptyErr: false,
         usersData: [],
-        cleanArr: []
+        cleanArr: [],
+        lessThan10: {
+
+            clicked: false,
+            arr: []
+
+        }
 
     },
     methods: {
@@ -59,15 +65,17 @@ const inst1 = new Vue({
 
             console.log(arr);
 
-            arr.map(el => {
+            arr.map((el, key) => {
 
                 let userObj = {};
 
+                let id = key;
                 let avatar = el.avatar_url.replace(/"/, '');
                 let followers = el.followers_url.length;
                 let following = el.following_url.length;
                 let repos = el.repos_url.length;
 
+                userObj.id = id;
                 userObj.avatar = avatar;
                 userObj.followers = followers;
                 userObj.following = following;
@@ -79,7 +87,39 @@ const inst1 = new Vue({
 
             console.log(this.cleanArr);
 
-        }
+        },
+
+        // lessThan10Button(e) {
+
+        //     e.preventDefault();
+
+        //     this.lessThan10.clicked = true;
+
+        //     this.cleanArr.map(el=>{
+
+        //         if (el.followers < 10) {
+
+        //             let userObj = {};
+
+        //             let id = key;
+        //             let avatar = el.avatar_url.replace(/"/, '');
+        //             let followers = el.followers_url.length;
+        //             let following = el.following_url.length;
+        //             let repos = el.repos_url.length;
+
+        //             userObj.id = id;
+        //             userObj.avatar = avatar;
+        //             userObj.followers = followers;
+        //             userObj.following = following;
+        //             userObj.repos = repos;
+
+        //             this.lessThan10.arr.push(userObj);
+
+        //         }
+
+        //     });
+
+        // }
 
     }
 

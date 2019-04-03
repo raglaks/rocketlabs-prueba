@@ -29,7 +29,7 @@
 
                 <p>Show users with: </p>
 
-                <button>Less than 10 followers</button>
+                <button v-on:click="lessThan10Button">Less than 10 followers</button>
 
                 <button>Between 10 and 100 followers</button>
 
@@ -41,7 +41,7 @@
 
             <div v-for="user in cleanArr">
 
-                <img v-bind:src="user.avatar" alt="">
+                <img v-bind:src="user.avatar" alt="user.key">
                 <p>Following: {{user.following}}</p>
                 <p>Followers: {{user.followers}}</p>
                 <p>Repos: {{user.repos}}</p>
@@ -49,6 +49,19 @@
             </div>
 
         </div>
+
+        <!-- <div v-show="lessThan10.clicked"></div>
+
+            <div v-for="user in lessThan10.arr">
+
+                <img v-bind:src="user.avatar" alt="">
+                <p>Following: {{user.following}}</p>
+                <p>Followers: {{user.followers}}</p>
+                <p>Repos: {{user.repos}}</p>
+            
+            </div>
+
+        </div> -->
 
     </div>
     

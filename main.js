@@ -17,7 +17,7 @@ const inst1 = new Vue({
 
         callAPI (query) {
 
-            fetch(`https://api.github.com/search/users?q=${query}&sort=page=1&per_page=1`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 
@@ -39,7 +39,7 @@ const inst1 = new Vue({
 
             console.log(query);
 
-            fetch(`https://api.github.com/search/users?q=${query}+followers:<10&sort=page=1&per_page=1`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}+followers:<10&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 
@@ -61,7 +61,7 @@ const inst1 = new Vue({
 
             console.log(query);
 
-            fetch(`https://api.github.com/search/users?q=${query}+followers:10..100&sort=page=1&per_page=1`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}+followers:10..100&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 
@@ -83,7 +83,7 @@ const inst1 = new Vue({
 
             console.log(query);
 
-            fetch(`https://api.github.com/search/users?q=${query}+followers:>100&sort=page=1&per_page=1`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}+followers:>100&sort=page=1&per_page=10`).then(res => {
         
                 res.json().then(data=>{
 

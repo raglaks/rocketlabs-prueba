@@ -19,8 +19,6 @@ const inst1 = new Vue({
 
                     this.usersData = data.items;
 
-                    // console.log(this.usersData);
-
                     this.buildCards(this.usersData);
         
                 });
@@ -34,6 +32,10 @@ const inst1 = new Vue({
         },
 
         submitClick (e) {
+
+            this.usersData = [];
+
+            this.cleanArr = [];
 
             e.preventDefault();
 
@@ -55,7 +57,7 @@ const inst1 = new Vue({
 
         buildCards (arr) {
 
-            // console.log(arr);
+            console.log(arr);
 
             arr.map(el => {
 

@@ -40,7 +40,51 @@ const inst1 = new Vue({
 
             console.log(query);
 
-            fetch(`https://api.github.com/search/users?q=${query}+followers:<10&sort=page=1&per_page=10`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}+followers:<10&sort=page=1&per_page=1`).then(res => {
+        
+                res.json().then(data=>{
+
+                    this.usersData = data.items;
+
+                    this.buildCards(this.usersData);
+        
+                });
+        
+            }).catch(err=>{
+        
+                throw err;
+        
+            });
+
+        },
+
+        callAPI10To100 (query) {
+
+            console.log(query);
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:10..100&sort=page=1&per_page=1`).then(res => {
+        
+                res.json().then(data=>{
+
+                    this.usersData = data.items;
+
+                    this.buildCards(this.usersData);
+        
+                });
+        
+            }).catch(err=>{
+        
+                throw err;
+        
+            });
+
+        },
+
+        callAPIOver100 (query) {
+
+            console.log(query);
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:>100&sort=page=1&per_page=1`).then(res => {
         
                 res.json().then(data=>{
 
@@ -123,41 +167,33 @@ const inst1 = new Vue({
 
             e.preventDefault();
 
+            this.usersData = [];
+
+            this.cleanArr = [];
+
             if (e.target.id == 1) {
 
                 console.log(1);
+
+                this.callAPILess10(this.query);
 
             } else if (e.target.id == 2) {
 
                 console.log(2);
 
+                this.callAPI10To100(this.query);
+
             } else {
 
                 console.log(3);
 
+                this.callAPIOver100(this.query);
+
             }
 
-            // this.usersData = [];
+        }
 
-            // this.cleanArr = [];
-
-            // if (this.query === "") {
-
-            //     this.emptyErr = true;
-
-            // } else {
-
-            //     this.emptyErr = false;
-
-            //     console.log(this.query);
-
-            //     //this.callAPILess10(this.query);
-
-            // }
-
-        },
-
-    }
+    },
 
 });
 

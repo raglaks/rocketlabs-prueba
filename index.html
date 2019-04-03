@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Rocket Labs Prueba</title>
 </head>
 
@@ -41,7 +42,7 @@
 
             <div v-for="user in cleanArr">
 
-                <img v-bind:src="user.avatar" alt="user.key">
+                <img class="pics" v-bind:src="user.avatar" alt="user.key">
                 <p><strong>{{user.login}}</strong></p>
                 <p>Following: {{user.following}}</p>
                 <p>Followers: {{user.followers}}</p>
@@ -57,5 +58,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="bundle.js"></script>
-<!-- <script src="main.js"></script> -->
+
 </html>

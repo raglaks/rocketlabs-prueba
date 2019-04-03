@@ -9,7 +9,7 @@ const inst1 = new Vue({
         emptyErr: false,
         usersData: [],
         cleanArr: [],
-        lessThan10: [],
+        //lessThan10: [],
         // notFound: false
 
     },
@@ -24,8 +24,6 @@ const inst1 = new Vue({
                     this.usersData = data.items;
 
                     this.buildCards(this.usersData);
-
-                    //console.log(this.usersData);
         
                 });
         
@@ -45,11 +43,9 @@ const inst1 = new Vue({
         
                 res.json().then(data=>{
 
-                    this.lessThan10 = data.items;
+                    this.usersData = data.items;
 
-                    console.log(data.items);
-
-                    //this.buildCards(this.usersData);
+                    this.buildCards(this.usersData);
         
                 });
         
@@ -62,8 +58,6 @@ const inst1 = new Vue({
         },
 
         buildCards (arr) {
-
-            console.log(this.usersData);
 
             this.notFound = false;
 

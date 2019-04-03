@@ -23,7 +23,7 @@
 
         <br>
 
-        <div v-show="cleanArr.length > 0">
+        <div v-show="cleanArr.length > 0 && lessThan10.length === 0">
 
             <div>
 
@@ -50,9 +50,23 @@
 
         </div>
 
-        <!-- <div v-show="lessThan10.clicked"></div>
+        <div v-show="lessThan10.length > 0">
 
-            <div v-for="user in lessThan10.arr">
+            <div v-for="user in lessThan10">
+
+                <div>
+
+                    <p>Show users with: </p>
+            
+                    <button v-on:click="lessThan10Button">Less than 10 followers</button>
+            
+                    <button>Between 10 and 100 followers</button>
+            
+                    <button>More than 100 followers</button>
+            
+                </div>
+            
+                <hr>
 
                 <img v-bind:src="user.avatar" alt="">
                 <p>Following: {{user.following}}</p>
@@ -61,7 +75,25 @@
             
             </div>
 
-        </div> -->
+        </div>
+
+        <div v-show="notFound">
+
+            <div>
+
+                <p>Show users with: </p>
+                
+                <button v-on:click="lessThan10Button">Less than 10 followers</button>
+                
+                <button>Between 10 and 100 followers</button>
+                
+                <button>More than 100 followers</button>
+                
+            </div>
+
+            <p>No users found</p>
+
+        </div>
 
     </div>
     

@@ -7,12 +7,8 @@ const inst1 = new Vue({
         emptyErr: false,
         usersData: [],
         cleanArr: [],
-        lessThan10: {
-
-            clicked: false,
-            arr: []
-
-        }
+        lessThan10: [],
+        notFound: false
 
     },
     methods: {
@@ -63,6 +59,8 @@ const inst1 = new Vue({
 
         buildCards (arr) {
 
+            this.notFound = false;
+
             console.log(arr);
 
             arr.map((el, key) => {
@@ -89,37 +87,45 @@ const inst1 = new Vue({
 
         },
 
-        // lessThan10Button(e) {
+        lessThan10Button(e) {
 
-        //     e.preventDefault();
+            e.preventDefault();
 
-        //     this.lessThan10.clicked = true;
+            this.cleanArr.map((el, key)=>{
 
-        //     this.cleanArr.map(el=>{
+                if (el.followers < 10) {
 
-        //         if (el.followers < 10) {
+                    let userObj = {};
 
-        //             let userObj = {};
+                    let id = key;
+                    let avatar = el.avatar_url.replace(/"/, '');
+                    let followers = el.followers_url.length;
+                    let following = el.following_url.length;
+                    let repos = el.repos_url.length;
 
-        //             let id = key;
-        //             let avatar = el.avatar_url.replace(/"/, '');
-        //             let followers = el.followers_url.length;
-        //             let following = el.following_url.length;
-        //             let repos = el.repos_url.length;
+                    userObj.id = id;
+                    userObj.avatar = avatar;
+                    userObj.followers = followers;
+                    userObj.following = following;
+                    userObj.repos = repos;
 
-        //             userObj.id = id;
-        //             userObj.avatar = avatar;
-        //             userObj.followers = followers;
-        //             userObj.following = following;
-        //             userObj.repos = repos;
+                    this.lessThan10.push(userObj);
 
-        //             this.lessThan10.arr.push(userObj);
+                } else {
 
-        //         }
+                    this.notFound = true;
 
-        //     });
+                    this.lessThan10 = [];
 
-        // }
+                    this.cleanArr = [];
+
+                }
+
+            });
+
+            console.log(this.lessThan10, this.notFound);
+
+        }
 
     }
 

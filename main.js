@@ -85,33 +85,34 @@ const inst1 = new Vue({
 
             this.notFound = false;
 
-            console.log(arr);
-
             arr.map((el, key) => {
 
                 let gh = new GitHub({});
 
                 let userObj = {};
 
-                let id = key;
-                let avatar = el.avatar_url.replace(/"/, '');
+                userObj.id = key;
+                userObj.avatar = el.avatar_url.replace(/"/, '');
                 let login = el.login;
 
-                gh.get(`users/${login}/followers`, {all: true}, (followers)=>{
+                gh.get(`users/${login}`, (err, info)=>{
 
-                    console.log(followers);
+                    if (err) {
+
+                        console.log(err);
+    
+                    } else {
+    
+                        userObj.login = login;
+                        userObj.followers = JSON.parse(info.followers);
+                        userObj.following = JSON.parse(info.following);
+                        userObj.repos = JSON.parse(info.public_repos);
+
+                        this.cleanArr.push(userObj);
+    
+                    }
 
                 });
-
-                let followers = el.followers_url;
-                let following = el.following_url;
-                let repos = el.repos_url;
-
-                userObj.id = id;
-                userObj.avatar = avatar;
-                userObj.login = login;
-
-                this.cleanArr.push(userObj);
 
             });
 

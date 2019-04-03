@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/raglaks/rocketlabs-prueba#readme",
   "dependencies": {
+    "browserify": "^16.2.3",
     "gh.js": "^3.0.13"
   }
 }

@@ -1,4 +1,4 @@
-//const GitHub = require("gh.js");
+let GitHub = require("gh.js");
 
 const inst1 = new Vue({
 
@@ -89,11 +89,20 @@ const inst1 = new Vue({
 
             arr.map((el, key) => {
 
+                let gh = new GitHub({});
+
                 let userObj = {};
 
                 let id = key;
                 let avatar = el.avatar_url.replace(/"/, '');
                 let login = el.login;
+
+                gh.get(`users/${login}/followers`, {all: true}, (followers)=>{
+
+                    console.log(followers);
+
+                });
+
                 let followers = el.followers_url;
                 let following = el.following_url;
                 let repos = el.repos_url;

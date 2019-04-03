@@ -57,6 +57,50 @@ const inst1 = new Vue({
 
         },
 
+        callAPI10To100 (query) {
+
+            console.log(query);
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:10..100&sort=page=1&per_page=10`).then(res => {
+        
+                res.json().then(data=>{
+
+                    this.usersData = data.items;
+
+                    this.buildCards(this.usersData);
+        
+                });
+        
+            }).catch(err=>{
+        
+                throw err;
+        
+            });
+
+        },
+
+        callAPIOver100 (query) {
+
+            console.log(query);
+
+            fetch(`https://api.github.com/search/users?q=${query}+followers:>100..100&sort=page=1&per_page=10`).then(res => {
+        
+                res.json().then(data=>{
+
+                    this.usersData = data.items;
+
+                    this.buildCards(this.usersData);
+        
+                });
+        
+            }).catch(err=>{
+        
+                throw err;
+        
+            });
+
+        },
+
         buildCards (arr) {
 
             this.notFound = false;
@@ -122,41 +166,33 @@ const inst1 = new Vue({
 
             e.preventDefault();
 
-            if (e.target.id === 1) {
+            this.usersData = [];
+
+            this.cleanArr = [];
+
+            if (e.target.id == 1) {
 
                 console.log(1);
 
-            } else if (e.target.id === 2) {
+                this.callAPILess10(this.query);
+
+            } else if (e.target.id == 2) {
 
                 console.log(2);
+
+                this.callAPI10To100(this.query);
 
             } else {
 
                 console.log(3);
 
-            }
-
-            this.usersData = [];
-
-            this.cleanArr = [];
-
-            if (this.query === "") {
-
-                this.emptyErr = true;
-
-            } else {
-
-                this.emptyErr = false;
-
-                console.log(this.query);
-
-                //this.callAPILess10(this.query);
+                this.callAPIOver100(this.query);
 
             }
 
-        },
+        }
 
-    }
+    },
 
 });
 

@@ -17,7 +17,7 @@ const inst1 = new Vue({
 
         callAPI (query) {
 
-            fetch(`https://api.github.com/search/users?q=${query}&sort=page=1&per_page=10`).then(res => {
+            fetch(`https://api.github.com/search/users?q=${query}&sort=page=1&per_page=1`).then(res => {
         
                 res.json().then(data=>{
 
@@ -118,9 +118,23 @@ const inst1 = new Vue({
 
         },
 
-        lessThan10Button(e) {
+        innerButtons(e) {
 
             e.preventDefault();
+
+            if (e.target.id === 1) {
+
+                console.log(1);
+
+            } else if (e.target.id === 2) {
+
+                console.log(2);
+
+            } else {
+
+                console.log(3);
+
+            }
 
             this.usersData = [];
 
@@ -136,11 +150,11 @@ const inst1 = new Vue({
 
                 console.log(this.query);
 
-                this.callAPILess10(this.query);
+                //this.callAPILess10(this.query);
 
             }
 
-        }
+        },
 
     }
 
